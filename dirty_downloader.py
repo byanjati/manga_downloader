@@ -44,18 +44,19 @@ def download_comic(manga_title,mangasource):
 
 		html = inspect_url("http://mangastream.com/")
 		soup = bs4.BeautifulSoup(html)
-		links = soup.select('.new-list a[href]')
-
-		resp = inspect_url(search_comic(manga_title,links))
+		links = soup.select('.new-list .active a[href]')
 
 		try:
+			resp = inspect_url(search_comic(manga_title,links))
+
 			i = 100
 			while(inspect_img(resp)['src'] is not None):
 				filename = os.path.join(directory, manga_title + ' ' + str(i)+".png")
 				urllib.urlretrieve(inspect_img(resp)['src'],filename)
 				i += 1
 				resp = inspect_url(inspect_next_url(resp)['href'])
+				
 		except IndexError:
-			print "finished"
+			print "Belom Keluar gan, sabar sih"
 
-download_comic('one_piece','mangastream')
+download_comic('bleach','mangastream')
