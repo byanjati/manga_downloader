@@ -59,4 +59,7 @@ def download_comic(manga_title,mangasource):
 		except IndexError:
 			print "Belom Keluar gan, sabar sih"
 
-download_comic('bleach','mangastream')
+nama_komik_yang_dicari = 'bleach'
+source_komik = 'mangastream'
+
+download_comic(nama_komik_yang_dicari,source_komik)
